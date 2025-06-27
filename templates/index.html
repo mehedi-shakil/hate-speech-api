@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Twitter Hate Speech Detector</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Header with Banner -->
+    <header>
+        <div class="banner-container">
+            <img src="{{ url_for('static', filename='banner.png') }}" alt="Banner" class="banner">
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <h1>Finding Hate Tweet Here</h1>
+            <form action="/predict" method="POST">
+                <textarea name="tweet" placeholder="Paste a tweet here..." required></textarea>
+                <button type="submit">Analyze Tweet</button>
+            </form>
+
+            {% if prediction %}
+                <div class="result-box">
+                    <strong>Prediction:</strong>
+                    <span class="{{ 'hate' if prediction == 'Hate' else 'non-hate' }}">{{ prediction }}</span>
+                </div>
+            {% endif %}
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; Mehedi Hasan Shakil, 2025. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
